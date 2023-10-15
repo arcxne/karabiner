@@ -45,33 +45,21 @@ const rules: KarabinerRules[] = [
   ...createHyperSubLayers({
     // o = "Open" applications
     o: {
-      g: app("Google Chrome"),
-      c: app("Cron"),
+      c: app("Calendar"),
       v: app("Visual Studio Code"),
-      d: app("Discord"),
-      s: app("Slack"),
-      e: app("Superhuman"),
-      n: app("Notion"),
+      r: app("Reminders"),
       t: app("Terminal"),
-      // Open todo list managed via *H*ypersonic
-      h: open(
-        "notion://www.notion.so/stellatehq/7b33b924746647499d906c55f89d5026"
-      ),
-      z: app("zoom.us"),
-      m: app("Mochi"),
-      f: app("Figma"),
-      r: app("Telegram"),
+      f: app("Firefox"),
       // "i"Message
       i: app("Messages"),
-      p: app("Spotify"),
-      a: app("iA Presenter"),
-      w: open("https://web.whatsapp.com"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
-      ),
+      m: app("Mail"),
+      w: open("Whatsapp"),
+
+      
+      // m: app("Mochi"),
     },
 
-    // w = "Window" via rectangle.app
+    // w = "Window" via Raycast
     w: {
       semicolon: {
         description: "Window: Hide",
@@ -82,12 +70,21 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      y: {
-        description: "Window: First Third",
+      f: {
+        description: "Window: Full Screen",
         to: [
           {
-            key_code: "left_arrow",
-            modifiers: ["right_option", "right_control"],
+            key_code: "f",
+            modifiers: ["right_option", "right_command"],
+          },
+        ],
+      },
+      o: {
+        description: "Window: Next Tab",
+        to: [
+          {
+            key_code: "tab",
+            modifiers: ["right_control"],
           },
         ],
       },
@@ -109,15 +106,6 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      o: {
-        description: "Window: Last Third",
-        to: [
-          {
-            key_code: "right_arrow",
-            modifiers: ["right_option", "right_control"],
-          },
-        ],
-      },
       h: {
         description: "Window: Left Half",
         to: [
@@ -136,43 +124,26 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      f: {
-        description: "Window: Full Screen",
+      m: {
+        description: "Window: Maximise",
         to: [
           {
-            key_code: "f",
+            key_code: "m",
             modifiers: ["right_option", "right_command"],
           },
         ],
       },
-      u: {
-        description: "Window: Previous Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control", "right_shift"],
-          },
-        ],
-      },
-      i: {
-        description: "Window: Next Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control"],
-          },
-        ],
-      },
-      n: {
+      p: {
         description: "Window: Next Window",
         to: [
           {
-            key_code: "grave_accent_and_tilde",
-            modifiers: ["right_command"],
+            key_code: "tab",
+            modifiers: ["right_option"],
           },
         ],
       },
-      b: {
+
+      u: {
         description: "Window: Back",
         to: [
           {
@@ -181,8 +152,7 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      // Note: No literal connection. Both f and n are already taken.
-      m: {
+      i: {
         description: "Window: Forward",
         to: [
           {
@@ -191,12 +161,22 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      d: {
-        description: "Window: Next display",
+      
+      n: {
+        description: "Window: New Tab",
         to: [
           {
-            key_code: "right_arrow",
-            modifiers: ["right_control", "right_option", "right_command"],
+            key_code: "t",
+            modifiers: ["right_command"],
+          },
+        ],
+      },
+      c: {
+        description: "Window: Close Tab",
+        to: [
+          {
+            key_code: "w",
+            modifiers: ["right_command"],
           },
         ],
       },
@@ -258,31 +238,16 @@ const rules: KarabinerRules[] = [
         to: [
           {
             // Emoji picker
-            key_code: "spacebar",
-            modifiers: ["right_control", "right_command"],
-          },
-        ],
-      },
-      // Turn on Elgato KeyLight
-      y: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 1, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-          },
-        ],
-      },
-      h: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 0, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
+            key_code: "e",
+            modifiers: ["right_option", "right_command"],
           },
         ],
       },
     },
 
-    // v = "moVe" which isn't "m" because we want it to be on the left hand
-    // so that hjkl work like they do in vim
+    // v = "moVe"
     v: {
+      // scroll using HJKL
       h: {
         to: [{ key_code: "left_arrow" }],
       },
@@ -295,6 +260,13 @@ const rules: KarabinerRules[] = [
       l: {
         to: [{ key_code: "right_arrow" }],
       },
+      // page up/down using UI
+      u: {
+        to: [{ key_code: "page_down" }],
+      },
+      i: {
+        to: [{ key_code: "page_up" }],
+      },
       // Magicmove via homerow.app
       m: {
         to: [{ key_code: "f", modifiers: ["right_control"] }],
@@ -302,15 +274,6 @@ const rules: KarabinerRules[] = [
       // Scroll mode via homerow.app
       s: {
         to: [{ key_code: "j", modifiers: ["right_control"] }],
-      },
-      d: {
-        to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
-      },
-      u: {
-        to: [{ key_code: "page_down" }],
-      },
-      i: {
-        to: [{ key_code: "page_up" }],
       },
     },
 
@@ -329,23 +292,40 @@ const rules: KarabinerRules[] = [
 
     // r = "Raycast"
     r: {
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
-      ),
-      e: open("raycast://extensions/raycast/emoji/search-emoji"),
-      c: open("raycast://extensions/raycast/raycast/confetti"),
-      a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
-      s: open("raycast://extensions/peduarte/silent-mention/index"),
-      h: open(
-        "raycast://extensions/raycast/clipboard-history/clipboard-history"
-      ),
-      1: open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
-      ),
-      2: open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
-      ),
+      // K-onfetti
+      k: open("raycast://extensions/raycast/raycast/confetti"),
+      // "O"pen
+      o: {
+        to: [{ key_code: "spacebar", modifiers: ["right_command"] }],
+      },
+      // 1: open(
+      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
+      // ),
+      // 2: open(
+      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
+      // ),
     },
+
+    // x = firefo"X"
+    x: {
+      // side"B"ery
+      b: {
+        to: [{ key_code: "e", modifiers: ["right_control", "right_command"] }],
+      },
+      // scroll through panel and tabs using HJKL
+      h: {
+        to: [{ key_code: "comma", modifiers: ["right_control"] }],
+      },
+      j: {
+        to: [{ key_code: "m", modifiers: ["right_control", "right_command"] }],
+      },
+      k: {
+        to: [{ key_code: "n", modifiers: ["right_control", "right_command"] }],
+      },
+      l: {
+        to: [{ key_code: "period", modifiers: ["right_control"] }],
+      }
+    }
   }),
 ];
 
