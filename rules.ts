@@ -49,14 +49,10 @@ const rules: KarabinerRules[] = [
       v: app("Visual Studio Code"),
       r: app("Reminders"),
       t: app("Terminal"),
-      f: app("Firefox"),
-      // "i"Message
-      i: app("Messages"),
+      b: app("Arc"),                // "b"rowser
+      i: app("Messages"),           // "i"Message
       m: app("Mail"),
-      w: open("Whatsapp"),
-
-      
-      // m: app("Mochi"),
+      w: app("Whatsapp"),
     },
 
     // w = "Window" via Raycast
@@ -75,7 +71,7 @@ const rules: KarabinerRules[] = [
         to: [
           {
             key_code: "f",
-            modifiers: ["right_option", "right_command"],
+            modifiers: ["right_control", "right_command"],
           },
         ],
       },
@@ -120,15 +116,6 @@ const rules: KarabinerRules[] = [
         to: [
           {
             key_code: "right_arrow",
-            modifiers: ["right_option", "right_command"],
-          },
-        ],
-      },
-      m: {
-        description: "Window: Maximise",
-        to: [
-          {
-            key_code: "m",
             modifiers: ["right_option", "right_command"],
           },
         ],
@@ -227,13 +214,6 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      semicolon: {
-        to: [
-          {
-            key_code: "fastforward",
-          },
-        ],
-      },
       e: {
         to: [
           {
@@ -289,43 +269,6 @@ const rules: KarabinerRules[] = [
         to: [{ key_code: "rewind" }],
       },
     },
-
-    // r = "Raycast"
-    r: {
-      // K-onfetti
-      k: open("raycast://extensions/raycast/raycast/confetti"),
-      // "O"pen
-      o: {
-        to: [{ key_code: "spacebar", modifiers: ["right_command"] }],
-      },
-      // 1: open(
-      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
-      // ),
-      // 2: open(
-      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
-      // ),
-    },
-
-    // x = firefo"X"
-    x: {
-      // side"B"ery
-      b: {
-        to: [{ key_code: "e", modifiers: ["right_control", "right_command"] }],
-      },
-      // scroll through panel and tabs using HJKL
-      h: {
-        to: [{ key_code: "comma", modifiers: ["right_control"] }],
-      },
-      j: {
-        to: [{ key_code: "m", modifiers: ["right_control", "right_command"] }],
-      },
-      k: {
-        to: [{ key_code: "n", modifiers: ["right_control", "right_command"] }],
-      },
-      l: {
-        to: [{ key_code: "period", modifiers: ["right_control"] }],
-      }
-    }
   }),
 ];
 
